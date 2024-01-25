@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "pbinfo.ro-styling",
+  "version": "1.0",
+  "description": "Some better styling for pbinfo.ro",
+  "icons": {
+    "48": "images/icon-48.png",
+    "128": "images/icon-128.png"
+  },
+  "options_ui": {
+    "page": "options/index.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_popup": "options/index.html",
+    "default_icon": {
+      "48": "images/icon-48-2.png",
+      "128": "images/icon-128-2.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.pbinfo.ro/*"],
+      "css": ["pbinfo/custom_styles.css"],
+      "js": ["pbinfo/custom_js.js"]
+    }
+  ],
+  "permissions": ["storage"]
+}

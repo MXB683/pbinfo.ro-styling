@@ -1,0 +1,35 @@
+body {
+  width: 40em;
+}
+
+* {
+  border-radius: 10px;
+  border-color: rgb(85, 85, 85);
+  font-weight: bold;
+  font-size: large;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+h1 {
+  font-size: xx-large;
+}
+h2 {
+  font-size: x-large;
+}
+
+#save {
+  font-size: xx-large;
+  position: fixed;
+  top: 1em;
+  right: 1em;
+}
+
+input[type="text"] {
+  border-width: 0 0 0.1em 0;
+  padding: 0 0.3em;
+  outline-color: transparent;
+}
+
+dialog {
+  text-align: center;
+}

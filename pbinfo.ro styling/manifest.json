@@ -14,15 +14,19 @@
   "action": {
     "default_popup": "options/index.html",
     "default_icon": {
-      "48": "images/icon-48-2.png",
-      "128": "images/icon-128-2.png"
+      "48": "images/icon-48.png",
+      "128": "images/icon-128.png"
     }
   },
   "content_scripts": [
     {
       "matches": ["*://*.pbinfo.ro/*"],
-      "css": ["pbinfo/custom_styles.css"],
-      "js": ["pbinfo/custom_js.js"]
+      "css": ["pbinfo/style.css"],
+      "js": ["pbinfo/script.js"]
+    },
+    {
+      "matches": ["*://*.pbinfo.ro/probleme-categorii/*"],
+      "js": ["pbinfo/probleme-categorii/script.js"]
     }
   ],
   "permissions": ["storage"]

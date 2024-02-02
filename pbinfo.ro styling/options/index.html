@@ -1,19 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MXB's Browser Kit</title>
+  <title>Pbinfo.ro Styles</title>
+  <link rel="stylesheet" href="style.css">
   <script src="index.js" defer></script>
 </head>
 <body>
-  <h1>MXB's Browser Kit</h1>
+  <h1>Pbinfo.ro Styles</h1>
   <h2>Settings</h2>
-  <h3>
-    <button id="save">Save Settings</button>
-    <input type="checkbox" id="mxbsbrowserkit_pbinfoStylesEnabled" checked>
-    <label for="mxbsbrowserkit_pbinfoStylesEnabled">pbinfo icons</label>
-  </h3>
+  <button id="save">Save Settings</button>
+  <br>
+  <input type="checkbox" id="icons-enabled" checked>
+  <label for="icons-enabled">Enable Icons</label>
+  <br>
+  <label for="font">Font: </label>
+  <input type="text" id="custom-font" placeholder="Calibri">
+  <br>
+  <input type="checkbox" id="font-ligatures-enabled" checked>
+  <label for="font-ligatures-enabled">Font Ligatures (only applies to some fonts) </label>
+  <button style="display: inline; border-radius: 1em;" onclick="document.getElementById('ligaturesHelp').showModal()">?</button>
+  <dialog id="ligaturesHelp">
+    Font ligatures are two or more characters joined to make a single glyph
+    <br>
+    For example, &#60= is shown as ≤
+    <br>
+    <button onclick="document.getElementById('ligaturesHelp').close()">Ok</button>
+  </dialog>
 </body>
 </html>

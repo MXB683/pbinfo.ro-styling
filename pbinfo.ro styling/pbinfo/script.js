@@ -1,7 +1,7 @@
 "use strict";
 
 chrome.storage.sync.get(
-  { icons: true, fontLigatures: true, font: "cascadia-code" },
+  { icons: true, fontLigatures: true, font: "cascadia code" },
   (items) => {
     // Icons
     if (items.icons) {

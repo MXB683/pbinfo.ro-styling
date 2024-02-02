@@ -15,6 +15,9 @@ const save = () => {
     () => {
       document.getElementById("save").innerText = "Saved!";
       document.getElementById("save").style.backgroundColor = "rgb(0, 255, 128)";
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
+      });
       setTimeout(() => {
         document.getElementById("save").innerText = "Save Settings";
         document.getElementById("save").style.backgroundColor = "rgb(240, 240, 240)";
@@ -24,7 +27,7 @@ const save = () => {
 };
 
 const restore = () => {
-  chrome.storage.sync.get({ icons: true, fontLigatures: true, font: "cascadia-code" }, (items) => {
+  chrome.storage.sync.get({ icons: true, fontLigatures: true, font: "cascadia code" }, (items) => {
     document.getElementById("icons-enabled").checked = items.icons;
     document.getElementById("font-ligatures-enabled").checked =
       items.fontLigatures;

@@ -29,5 +29,5 @@
       "js": ["pbinfo/probleme-categorii/script.js"]
     }
   ],
-  "permissions": ["storage"]
+  "permissions": ["storage", "tabs"]
 }

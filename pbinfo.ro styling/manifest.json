@@ -21,12 +21,16 @@
   "content_scripts": [
     {
       "matches": ["*://*.pbinfo.ro/*"],
-      "css": ["pbinfo/style.css"],
-      "js": ["pbinfo/script.js"]
+      "css": ["pbinfo/__all__/style.css"],
+      "js": ["pbinfo/__all__/script.js"]
     },
     {
       "matches": ["*://*.pbinfo.ro/probleme-categorii/*"],
       "js": ["pbinfo/probleme-categorii/script.js"]
+    },
+    {
+      "matches": ["*://*.pbinfo.ro/"],
+      "js": ["pbinfo/__home__/script.js"]
     }
   ],
   "permissions": ["storage", "tabs"]

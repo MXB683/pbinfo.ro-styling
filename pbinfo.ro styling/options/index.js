@@ -35,5 +35,15 @@ const restore = () => {
   });
 };
 
+const showLigsHelp = () => {
+  document.getElementById('ligaturesHelp').showModal();
+}
+
+const hideLigsHelp = () => {
+  document.getElementById('ligaturesHelp').close();
+}
+
+document.getElementById("hideLigsHelp").addEventListener("click", hideLigsHelp);
+document.getElementById("showLigsHelp").addEventListener("click", showLigsHelp);
 document.getElementById("save").addEventListener("click", save);
 document.addEventListener("DOMContentLoaded", restore);

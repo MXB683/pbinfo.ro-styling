@@ -20,13 +20,13 @@
   <br>
   <input type="checkbox" id="font-ligatures-enabled" checked>
   <label for="font-ligatures-enabled">Font Ligatures (only applies to some fonts) </label>
-  <button style="display: inline; border-radius: 1em;" onclick="document.getElementById('ligaturesHelp').showModal()">?</button>
+  <button style="display: inline; border-radius: 1em;" id="showLigsHelp">?</button>
   <dialog id="ligaturesHelp">
     Font ligatures are two or more characters joined to make a single glyph
     <br>
     For example, &#60= is shown as ≤
     <br>
-    <button onclick="document.getElementById('ligaturesHelp').close()">Ok</button>
+    <button id="hideLigsHelp">Ok</button>
   </dialog>
 </body>
 </html>

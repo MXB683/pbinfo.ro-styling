@@ -14,34 +14,39 @@ const save = () => {
     },
     () => {
       document.getElementById("save").innerText = "Saved!";
-      document.getElementById("save").style.backgroundColor = "rgb(0, 255, 128)";
-      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        chrome.tabs.update(tabs[0].id, {url: tabs[0].url});
-       });
+      document.getElementById("save").style.backgroundColor =
+        "rgb(0, 255, 128)";
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.tabs.update(tabs[0].id, { url: tabs[0].url });
+      });
       setTimeout(() => {
         document.getElementById("save").innerText = "Save Settings";
-        document.getElementById("save").style.backgroundColor = "rgb(240, 240, 240)";
+        document.getElementById("save").style.backgroundColor =
+          "rgb(240, 240, 240)";
       }, 1000);
     }
   );
 };
 
 const restore = () => {
-  chrome.storage.sync.get({ icons: true, fontLigatures: true, font: "cascadia code" }, (items) => {
-    document.getElementById("icons-enabled").checked = items.icons;
-    document.getElementById("font-ligatures-enabled").checked =
-      items.fontLigatures;
-    document.getElementById("custom-font").value = items.font;
-  });
+  chrome.storage.sync.get(
+    { icons: true, fontLigatures: true, font: "cascadia code" },
+    (items) => {
+      document.getElementById("icons-enabled").checked = items.icons;
+      document.getElementById("font-ligatures-enabled").checked =
+        items.fontLigatures;
+      document.getElementById("custom-font").value = items.font;
+    }
+  );
 };
 
 const showLigsHelp = () => {
-  document.getElementById('ligaturesHelp').showModal();
-}
+  document.getElementById("ligaturesHelp").showModal();
+};
 
 const hideLigsHelp = () => {
-  document.getElementById('ligaturesHelp').close();
-}
+  document.getElementById("ligaturesHelp").close();
+};
 
 document.getElementById("hideLigsHelp").addEventListener("click", hideLigsHelp);
 document.getElementById("showLigsHelp").addEventListener("click", showLigsHelp);

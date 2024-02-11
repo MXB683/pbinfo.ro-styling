@@ -18,10 +18,12 @@ h2 {
 }
 
 #save {
-  font-size: xx-large;
   position: fixed;
   top: 1em;
   right: 1em;
+  & > #save_text {
+    font-size: xx-large;
+  }
 }
 
 input[type="text"] {
@@ -32,4 +34,24 @@ input[type="text"] {
 
 dialog {
   text-align: center;
+}
+
+#save.active > #save_time-left {
+  position: absolute;
+  bottom: 0;
+  left: 5px;
+  right: 5px;
+  background-color: rgb(240, 240, 240);
+  height: 5px;
+  animation: dissapear 3000ms;
+}
+
+@keyframes dissapear {
+  0% {
+    width: 90%;
+  }
+
+  100% {
+    width: 0%;
+  }
 }

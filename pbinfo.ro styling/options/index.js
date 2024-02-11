@@ -13,17 +13,19 @@ const save = () => {
       font: font,
     },
     () => {
-      document.getElementById("save").innerText = "Saved!";
+      document.getElementById("save").classList.add("active");
+      document.getElementById("save_text").innerText = document.getElementById("save").innerText.replace("Save Settings", "Saved!");
       document.getElementById("save").style.backgroundColor =
-        "rgb(0, 255, 128)";
+      "rgb(0, 255, 128)";
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.tabs.update(tabs[0].id, { url: tabs[0].url });
       });
       setTimeout(() => {
-        document.getElementById("save").innerText = "Save Settings";
+        document.getElementById("save_text").innerText = document.getElementById("save").innerText.replace("Saved!", "Save Settings");
         document.getElementById("save").style.backgroundColor =
           "rgb(240, 240, 240)";
-      }, 1000);
+        document.getElementById("save").classList.remove("active");
+      }, 3000);
     }
   );
 };

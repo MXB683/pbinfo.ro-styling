@@ -6,11 +6,13 @@ const save = () => {
     document.getElementById("font-ligatures-enabled").checked
   );
   const font = document.getElementById("custom-font").value;
+  const customFontLink = document.getElementById("custom-font-link").value;
   chrome.storage.sync.set(
     {
       icons: icons,
       fontLigatures: fontLigatures,
       font: font,
+      customFontLink: customFontLink,
     },
     () => {
       document.getElementById("save").classList.add("active");
@@ -32,12 +34,18 @@ const save = () => {
 
 const restore = () => {
   chrome.storage.sync.get(
-    { icons: true, fontLigatures: true, font: "cascadia code" },
+    {
+      icons: true,
+      fontLigatures: true,
+      font: "cascadia code",
+      customFontLink: "@import url('https://fonts.cdnfonts.com/css/cascadia-code');",
+    },
     (items) => {
       document.getElementById("icons-enabled").checked = items.icons;
       document.getElementById("font-ligatures-enabled").checked =
         items.fontLigatures;
       document.getElementById("custom-font").value = items.font;
+      document.getElementById("custom-font-link").value = items.customFontLink;
     }
   );
 };

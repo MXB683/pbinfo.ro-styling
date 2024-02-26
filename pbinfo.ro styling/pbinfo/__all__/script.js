@@ -1,7 +1,12 @@
 "use strict";
 
 chrome.storage.sync.get(
-  { icons: true, fontLigatures: true, font: "cascadia code" },
+  {
+    icons: true,
+    fontLigatures: true,
+    font: "cascadia code",
+    customFontLink: "@import url('https://fonts.cdnfonts.com/css/cascadia-code');",
+  },
   (items) => {
     // Icons
     if (items.icons) {
@@ -97,6 +102,14 @@ chrome.storage.sync.get(
 
     // Font
     document.querySelector("body").style.fontFamily = `${items.font}, sans-serif`;
+
+    // Font Import
+    {
+      let node = document.createElement("style");
+      node.classList.add("pbinfo-custom-styling-extension__custom-import-link");
+      node.innerHTML = items.customFontLink;
+      document.querySelector("head").appendChild(node);
+    }
 
     // cuz y not
     if (

@@ -5,7 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pbinfo.ro Styles</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../codemirror/lib/codemirror.css">
   <script src="index.js" defer></script>
+  <script src="../codemirror/lib/codemirror.js"></script>
+  <script src="../codemirror/mode/clike/clike.js"></script>
+  <script src="../codemirror/addon/edit/closebrackets.js"></script>
+  <script src="../codemirror/addon/edit/matchbrackets.js"></script>
+  <script src="../codemirror/addon/edit/trailingspace.js"></script>
+  <script src="../codemirror/addon/edit/continuelist.js"></script>
 </head>
 <body>
   <h1>Pbinfo.ro Styles</h1>
@@ -21,9 +28,28 @@
   <label for="font">Font: </label>
   <input type="text" id="custom-font" placeholder="Calibri">
   <br>
+  <label
+    for="custom-font-link"
+    style="margin-top: 1em;">
+      Custom CSS Font Link:
+  </label>
+  <div style="
+    width: 30em;
+    resize: horizontal;
+    overflow: hidden;
+  ">
+    <input
+      type="text"
+      id="custom-font-link"
+      style="
+        width: 100%;
+        margin: 0;
+      "
+      placeholder="@import url('https://fonts.cdnfonts.com/css/cascadia-code');">
+  </div>
   <input type="checkbox" id="font-ligatures-enabled" checked>
   <label for="font-ligatures-enabled">Font Ligatures (only applies to some fonts) </label>
-  <button style="display: inline; border-radius: 1em;" id="showLigsHelp">?</button>
+  <button style="display: inline; border-radius: 100%;" id="showLigsHelp"><b>?</b></button>
   <dialog id="ligaturesHelp">
     Font ligatures are two or more characters joined to make a single glyph
     <br>
@@ -31,5 +57,35 @@
     <br>
     <button id="hideLigsHelp">Ok</button>
   </dialog>
+  <br>
+  <!-- <button onclick="document.getElementById('algs').showModal();">Configure Algorithms</button>
+  <dialog id="algs">
+    <div style="position: absolute; top: 1.2em; left: 1em; text-align: left;">
+      Algorithms
+    </div>
+    <button
+      style="position: absolute; top: 1em; right: 1em;"
+      onclick="document.getElementById('algs').close();"
+      id="closeAlgs">
+        X
+    </button>
+    <br>
+    <br>
+    <br>
+    <div class="algorithm">
+      <input type="text" class="title">
+      <br>
+      <br>
+      <textarea
+        class="editor"
+        style="height: 10em; width: 20em;"
+        placeholder="// Write code and paste it into the editor on pbinfo.ro
+// Accepts any language
+//
+// Scrie cod și lipește-l în editor-ul de pe pbinfo.ro
+// Acceptă orice limbaj de programare"></textarea>
+    </div>
+  </dialog> -->
+  
 </body>
 </html>

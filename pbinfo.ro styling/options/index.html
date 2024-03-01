@@ -5,14 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pbinfo.ro Styles</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="../codemirror/lib/codemirror.css">
   <script src="index.js" defer></script>
-  <script src="../codemirror/lib/codemirror.js"></script>
-  <script src="../codemirror/mode/clike/clike.js"></script>
-  <script src="../codemirror/addon/edit/closebrackets.js"></script>
-  <script src="../codemirror/addon/edit/matchbrackets.js"></script>
-  <script src="../codemirror/addon/edit/trailingspace.js"></script>
-  <script src="../codemirror/addon/edit/continuelist.js"></script>
 </head>
 <body>
   <h1>Pbinfo.ro Styles</h1>
@@ -45,7 +38,8 @@
         width: 100%;
         margin: 0;
       "
-      placeholder="@import url('https://fonts.cdnfonts.com/css/cascadia-code');">
+      placeholder="@import url('https://fonts.cdnfonts.com/css/cascadia-code');"
+      value="@import url('https://fonts.cdnfonts.com/css/cascadia-code');">
   </div>
   <input type="checkbox" id="font-ligatures-enabled" checked>
   <label for="font-ligatures-enabled">Font Ligatures (only applies to some fonts) </label>
@@ -58,34 +52,43 @@
     <button id="hideLigsHelp">Ok</button>
   </dialog>
   <br>
-  <!-- <button onclick="document.getElementById('algs').showModal();">Configure Algorithms</button>
+  <button id="algConfig">Configure Algorithms</button>
   <dialog id="algs">
     <div style="position: absolute; top: 1.2em; left: 1em; text-align: left;">
       Algorithms
     </div>
     <button
       style="position: absolute; top: 1em; right: 1em;"
-      onclick="document.getElementById('algs').close();"
       id="closeAlgs">
-        X
+      X
     </button>
     <br>
     <br>
     <br>
-    <div class="algorithm">
-      <input type="text" class="title">
+    <button id="addAlg"><span style="font-size: x-large;">+</span> Add Algorithm</button>
+    <fieldset class="algorithm">
+      <legend style="float: right;">
+        <button>X</button>
+      </legend>
+      <input type="text" class="title" value="Hello World">
       <br>
       <br>
       <textarea
-        class="editor"
         style="height: 10em; width: 20em;"
-        placeholder="// Write code and paste it into the editor on pbinfo.ro
-// Accepts any language
-//
-// Scrie cod și lipește-l în editor-ul de pe pbinfo.ro
-// Acceptă orice limbaj de programare"></textarea>
-    </div>
-  </dialog> -->
+        placeholder="// Write code here and paste it into the editor on pbinfo.ro
+  // Accepts any programming language
+  //
+  // Scrie cod aici și lipește-l în editor-ul de pe pbinfo.ro
+  // Acceptă orice limbaj de programare">#include <iostream>
+
+using namespace std;
+
+int main()
+{
+  cout << "Hello World!" << endl;
+}</textarea>
+    </fieldset>
+  </dialog>
   
 </body>
 </html>

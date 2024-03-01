@@ -128,6 +128,9 @@ chrome.storage.sync.get(
         .innerHTML.replace(" De informatică :)", "");
     }
 
-    
+    // Remove top colored bar
+    setInterval(() => {
+      document.querySelector("#bara_navigare").style.borderWidth = '0';
+    }, 50);
   }
 );

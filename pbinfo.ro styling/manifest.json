@@ -31,7 +31,14 @@
     {
       "matches": ["*://*.pbinfo.ro/"],
       "js": ["pbinfo/__home__/script.js"]
+    },
+    {
+      "matches": ["*://*.pbinfo.ro/probleme/*"],
+      "js": ["pbinfo/probleme/script.js"]
     }
   ],
-  "permissions": ["storage", "tabs"]
+  "permissions": [
+    "storage",
+    "tabs"
+  ]
 }

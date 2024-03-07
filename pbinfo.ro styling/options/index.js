@@ -26,7 +26,6 @@ const save = () => {
       algorithms: algorithms,
     },
     () => {
-      console.log(algorithms);
       document.getElementById("save").classList.add("active");
       document.getElementById("save_text").innerText = document.getElementById("save").innerText.replace("Save Settings", "Saved!");
       document.getElementById("save").style.backgroundColor =
@@ -53,7 +52,9 @@ const restore = () => {
       customFontLink: "@import url('https://fonts.cdnfonts.com/css/cascadia-code');",
       algorithms: [{}],
     },
-    (items) => {
+    (items = {
+      algorithms: [{ title: "", algorithm: "" }]
+    }) => {
       document.getElementById("icons-enabled").checked = items.icons;
       document.getElementById("font-ligatures-enabled").checked =
         items.fontLigatures;
@@ -93,14 +94,7 @@ const restore = () => {
 //
 // Scrie cod aici și lipește-l în editor-ul de pe pbinfo.ro
 // Acceptă orice limbaj de programare`);
-        textarea.innerHTML = `#include <iostream>
-
-using namespace std;
-
-int main()
-{
-  cout << "Hello World!" << endl;
-}`;
+        textarea.innerHTML = element.algorithm;
         node.appendChild(textarea);
 
         document.getElementById("algs").appendChild(node);

@@ -5,7 +5,8 @@ chrome.storage.sync.get(
     icons: true,
     fontLigatures: true,
     font: "cascadia code",
-    customFontLink: "@import url('https://fonts.cdnfonts.com/css/cascadia-code');",
+    customFontLink:
+      "@import url('https://fonts.cdnfonts.com/css/cascadia-code');",
   },
   (items) => {
     // Icons
@@ -54,24 +55,46 @@ chrome.storage.sync.get(
     `;
       document.querySelector("#navigare-li-resurse > a").title = "Resurse";
 
-      document.querySelector(
-        "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"
-      ).innerHTML = `
-    <svg style="height: 20px; width: 20px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="#ffffff" d="M160 64c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H336.8c-11.8-25.5-29.9-47.5-52.4-64H384V320c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v32h64V64L224 64v49.1C205.2 102.2 183.3 96 160 96V64zm0 64a96 96 0 1 1 0 192 96 96 0 1 1 0-192zM133.3 352h53.3C260.3 352 320 411.7 320 485.3c0 14.7-11.9 26.7-26.7 26.7H26.7C11.9 512 0 500.1 0 485.3C0 411.7 59.7 352 133.3 352z"/></svg>
-    `;
-      document.querySelector(
-        "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"
-      ).title = "Profesor";
+      if (document.querySelector("#navbar > ul.nav.navbar-nav.navbar-right").innerText.includes("Profesor")) {
+        document.querySelector(
+          "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"
+        ).innerHTML = `
+      <svg style="height: 20px; width: 20px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="#ffffff" d="M160 64c0-35.3 28.7-64 64-64H576c35.3 0 64 28.7 64 64V352c0 35.3-28.7 64-64 64H336.8c-11.8-25.5-29.9-47.5-52.4-64H384V320c0-17.7 14.3-32 32-32h64c17.7 0 32 14.3 32 32v32h64V64L224 64v49.1C205.2 102.2 183.3 96 160 96V64zm0 64a96 96 0 1 1 0 192 96 96 0 1 1 0-192zM133.3 352h53.3C260.3 352 320 411.7 320 485.3c0 14.7-11.9 26.7-26.7 26.7H26.7C11.9 512 0 500.1 0 485.3C0 411.7 59.7 352 133.3 352z"/></svg>
+        `;
+        document.querySelector(
+          "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"
+        ).title = "Profesor";
+        
+        let profilePicture = document.createElement("img");
+        profilePicture.height = "20";
+        profilePicture.src = document.querySelector("#div-login > div > div.panel-heading > strong > span > a > img").getAttribute("src");
+        
+        document.querySelector(
+          "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"
+        ).innerHTML = "";
+        document.querySelector(
+          "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"
+        ).appendChild(profilePicture);
 
-      document.querySelector(
-        "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"
-      ).innerHTML = `
-    <svg style="heigth: 20px; width: 20px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#ffffff" d="M399 384.2C376.9 345.8 335.4 320 288 320H224c-47.4 0-88.9 25.8-111 64.2c35.2 39.2 86.2 63.8 143 63.8s107.8-24.7 143-63.8zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm256 16a72 72 0 1 0 0-144 72 72 0 1 0 0 144z"/></svg>
-    `;
-      document.querySelector(
-        "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"
-      ).title = "Profil";
+        document.querySelector(
+          "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"
+        ).title = "Profil";
+      } else {
+        let profilePicture = document.createElement("img");
+        profilePicture.height = "20";
+        profilePicture.src = document.querySelector("#div-login > div > div.panel-heading > strong > span > a > img").getAttribute("src");
+        
+        document.querySelector(
+          "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"
+        ).innerHTML = "";
+        document.querySelector(
+          "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"
+        ).appendChild(profilePicture);
 
+        document.querySelector(
+          "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"
+        ).title = "Profil";
+      }
       try {
         document.querySelector(
           '#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a[data-target="#modal_login"]'
@@ -101,7 +124,9 @@ chrome.storage.sync.get(
     }
 
     // Font
-    document.querySelector("body").style.fontFamily = `${items.font}, sans-serif`;
+    document.querySelector(
+      "body"
+    ).style.fontFamily = `${items.font}, sans-serif`;
 
     // Font Import
     {
@@ -130,7 +155,12 @@ chrome.storage.sync.get(
 
     // Remove top colored bar
     setInterval(() => {
-      document.querySelector("#bara_navigare").style.borderWidth = '0';
+      document.querySelector("#bara_navigare").style.borderWidth = "0";
     }, 50);
+
+    // Make search icon open custom search
+    document.querySelector("#search_box_form > div > div > span > button").addEventListener("click", () => {
+      document.querySelector("#navigare-li-probleme > ul > li:nth-child(6) > a").click();
+    })
   }
 );

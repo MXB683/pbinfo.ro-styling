@@ -39,8 +39,6 @@ progress[value]::-moz-progress-bar {
 }
 
 label {
-  font-size: 20px;
   font-weight: bold;
   display: block;
-  margin: 20px 0;
 }

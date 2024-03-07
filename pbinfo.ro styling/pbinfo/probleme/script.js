@@ -12,17 +12,13 @@ chrome.storage.sync.get(
     algorithmMenuParentNode.innerHTML += "Algoritme";
     items.algorithms.forEach((element) => {
       let option = document.createElement("option");
-      option.setAttribute("value", `${element.title}`);
+      option.setAttribute("value", `${element.algorithm}`);
       option.innerText = element.title;
       selectMenu.appendChild(option);
     })
     algorithmMenuParentNode.appendChild(selectMenu);
     selectMenu.addEventListener("change", () => {
-      let title = selectMenu.value;
-      let code = items.algorithms.find((element) => {
-        return element.title === title;
-      });
-      let algorithm = String(code.algorithm).replaceAll("&lt;", "<");
+      let algorithm = selectMenu.value.replaceAll("&lt;", "<");
       algorithm = algorithm.replaceAll("&gt;", ">");
       navigator.clipboard.writeText(algorithm);
     })

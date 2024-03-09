@@ -1,5 +1,11 @@
 "use strict";
 
+setInterval(() => {
+  if(document.querySelector("#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a").childElementCount === 0) {
+    window.location.reload();
+  }
+}, 1000);
+
 chrome.storage.sync.get(
   {
     icons: true,
@@ -7,9 +13,17 @@ chrome.storage.sync.get(
     font: "cascadia code",
     customFontLink:
       "@import url('https://fonts.cdnfonts.com/css/cascadia-code');",
+    profilePictureSource: "",
   },
-  (items) => {
-    // Icons
+  (items = {
+    icons: true,
+    fontLigatures: true,
+    font: "cascadia code",
+    customFontLink:
+      "@import url('https://fonts.cdnfonts.com/css/cascadia-code');",
+    profilePictureSource: "",
+  }) => {
+    // ANCHOR Icons
     if (items.icons) {
       document.querySelector(
         "#bara_navigare > div > div.navbar-header > a"
@@ -55,7 +69,11 @@ chrome.storage.sync.get(
     `;
       document.querySelector("#navigare-li-resurse > a").title = "Resurse";
 
-      if (document.querySelector("#navbar > ul.nav.navbar-nav.navbar-right").innerText.includes("Profesor")) {
+      if (
+        document
+          .querySelector("#navbar > ul.nav.navbar-nav.navbar-right")
+          .innerText.includes("Profesor")
+      ) {
         document.querySelector(
           "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"
         ).innerHTML = `
@@ -64,32 +82,28 @@ chrome.storage.sync.get(
         document.querySelector(
           "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"
         ).title = "Profesor";
-        
-        let profilePicture = document.createElement("img");
-        profilePicture.height = "20";
-        profilePicture.src = document.querySelector("#div-login > div > div.panel-heading > strong > span > a > img").getAttribute("src");
-        
+
         document.querySelector(
           "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"
         ).innerHTML = "";
-        document.querySelector(
-          "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"
-        ).appendChild(profilePicture);
+
+        const profilePicture = document.createElement("img");
+        profilePicture.height = "20";
+        profilePicture.src = items.profilePictureSource
+        document.querySelector("#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a").appendChild(profilePicture);
 
         document.querySelector(
           "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"
         ).title = "Profil";
       } else {
-        let profilePicture = document.createElement("img");
-        profilePicture.height = "20";
-        profilePicture.src = document.querySelector("#div-login > div > div.panel-heading > strong > span > a > img").getAttribute("src");
-        
-        document.querySelector(
-          "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(2) > a"
-        ).innerHTML = "";
         document.querySelector(
           "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"
-        ).appendChild(profilePicture);
+        ).innerHTML = "";
+
+        const profilePicture = document.createElement("img");
+        profilePicture.height = "20";
+        profilePicture.src = items.profilePictureSource
+        document.querySelector("#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a").appendChild(profilePicture);
 
         document.querySelector(
           "#navbar > ul.nav.navbar-nav.navbar-right > li:nth-child(1) > a"
@@ -116,19 +130,19 @@ chrome.storage.sync.get(
       } catch {}
     }
 
-    // Font ligatures
+    // ANCHOR Font ligatures
     if (items.fontLigatures) {
       document.querySelector("body").style.fontVariantLigatures = "normal";
     } else {
       document.querySelector("body").style.fontVariantLigatures = "none";
     }
 
-    // Font
+    // ANCHOR Font
     document.querySelector(
       "body"
     ).style.fontFamily = `${items.font}, sans-serif`;
 
-    // Font Import
+    // ANCHOR Font Import
     {
       let node = document.createElement("style");
       node.classList.add("pbinfo-custom-styling-extension__custom-import-link");
@@ -153,14 +167,18 @@ chrome.storage.sync.get(
         .innerHTML.replace(" De informatică :)", "");
     }
 
-    // Remove top colored bar
+    // ANCHOR Remove top colored bar
     setInterval(() => {
       document.querySelector("#bara_navigare").style.borderWidth = "0";
     }, 50);
 
-    // Make search icon open custom search
-    document.querySelector("#search_box_form > div > div > span > button").addEventListener("click", () => {
-      document.querySelector("#navigare-li-probleme > ul > li:nth-child(6) > a").click();
-    })
+    // ANCHOR Make search icon open custom search
+    document
+      .querySelector("#search_box_form > div > div > span > button")
+      .addEventListener("click", () => {
+        document
+          .querySelector("#navigare-li-probleme > ul > li:nth-child(6) > a")
+          .click();
+      });
   }
 );

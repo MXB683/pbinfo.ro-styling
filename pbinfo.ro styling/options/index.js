@@ -13,10 +13,10 @@ const save = () => {
     try {
       algorithms.push({
         title: `${element.childNodes.item(3).value}`,
-        algorithm: `${element.childNodes.item(9).innerHTML}`
+        algorithm: `${element.childNodes.item(9).value}`,
       });
-    } catch (error) {};
-  })
+    } catch (error) {}
+  });
   chrome.storage.sync.set(
     {
       icons: icons,
@@ -27,14 +27,18 @@ const save = () => {
     },
     () => {
       document.getElementById("save").classList.add("active");
-      document.getElementById("save_text").innerText = document.getElementById("save").innerText.replace("Save Settings", "Saved!");
+      document.getElementById("save_text").innerText = document
+        .getElementById("save")
+        .innerText.replace("Save Settings", "Saved!");
       document.getElementById("save").style.backgroundColor =
-      "rgb(0, 255, 128)";
+        "rgb(0, 255, 128)";
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
         chrome.tabs.update(tabs[0].id, { url: tabs[0].url });
       });
       setTimeout(() => {
-        document.getElementById("save_text").innerText = document.getElementById("save").innerText.replace("Saved!", "Save Settings");
+        document.getElementById("save_text").innerText = document
+          .getElementById("save")
+          .innerText.replace("Saved!", "Save Settings");
         document.getElementById("save").style.backgroundColor =
           "rgb(240, 240, 240)";
         document.getElementById("save").classList.remove("active");
@@ -49,12 +53,15 @@ const restore = () => {
       icons: true,
       fontLigatures: true,
       font: "cascadia code",
-      customFontLink: "@import url('https://fonts.cdnfonts.com/css/cascadia-code');",
+      customFontLink:
+        "@import url('https://fonts.cdnfonts.com/css/cascadia-code');",
       algorithms: [{}],
     },
-    (items = {
-      algorithms: [{ title: "", algorithm: "" }]
-    }) => {
+    (
+      items = {
+        algorithms: [{ title: "", algorithm: "" }],
+      }
+    ) => {
       document.getElementById("icons-enabled").checked = items.icons;
       document.getElementById("font-ligatures-enabled").checked =
         items.fontLigatures;
@@ -89,16 +96,19 @@ const restore = () => {
         let textarea = document.createElement("textarea");
         textarea.style.height = "10em";
         textarea.style.width = "20em";
-        textarea.setAttribute("placeholder", `// Write code here and paste it into the editor on pbinfo.ro
+        textarea.setAttribute(
+          "placeholder",
+          `// Write code here and paste it into the editor on pbinfo.ro
 // Accepts any programming language
 //
 // Scrie cod aici și lipește-l în editor-ul de pe pbinfo.ro
-// Acceptă orice limbaj de programare`);
-        textarea.innerHTML = element.algorithm;
+// Acceptă orice limbaj de programare`
+        );
+        textarea.value = element.algorithm;
         node.appendChild(textarea);
 
         document.getElementById("algs").appendChild(node);
-      })
+      });
     }
   );
 };
@@ -112,28 +122,38 @@ const hideLigsHelp = () => {
 };
 
 document.getElementById("algConfig").addEventListener("click", () => {
-  document.getElementById('algs').showModal();
-})
+  document.getElementById("algs").showModal();
+});
 
 document.getElementById("closeAlgs").addEventListener("click", () => {
-  document.getElementById('algs').close();
+  document.getElementById("algs").close();
+});
+
+let algorithmNode = document
+  .querySelector("fieldset.algorithm")
+  .cloneNode(true);
+algorithmNode.classList.remove("default");
+
+document.querySelectorAll("fieldset.algorithm.default").forEach((element) => {
+  element.remove();
 })
 
-let algorithmNode = document.querySelector("fieldset.algorithm").cloneNode(true);
 document.getElementById("addAlg").addEventListener("click", () => {
   let node = algorithmNode.cloneNode(true);
   document.getElementById("algs").appendChild(node);
-})
+});
 
 setInterval(() => {
-  document.querySelectorAll("fieldset.algorithm > legend > button").forEach((element) => {
-    element.onclick = () => {
-      element.parentElement.parentElement.remove();
-      //  |        |              |
-      //  V        V              V
-      // btn  |  legend   |   fieldset
-    }
-  })
+  document
+    .querySelectorAll("fieldset.algorithm > legend > button")
+    .forEach((element) => {
+      element.onclick = () => {
+        element.parentElement.parentElement.remove();
+        //  |        |              |
+        //  V        V              V
+        // btn  |  legend   |   fieldset
+      };
+    });
 }, 1000);
 
 document.getElementById("hideLigsHelp").addEventListener("click", hideLigsHelp);

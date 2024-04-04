@@ -12,10 +12,10 @@ const save = () => {
   algorithmNodes.forEach((element) => {
     try {
       algorithms.push({
-        title: `${element.childNodes.item(3).value}`,
-        algorithm: `${element.childNodes.item(9).value}`,
+        title: `${element.querySelector("input.title").value}`,
+        algorithm: `${element.querySelector("textarea").value}`,
       });
-    } catch (error) {}
+    } catch (error) {console.log(error);}
   });
   chrome.storage.sync.set(
     {
@@ -57,11 +57,7 @@ const restore = () => {
         "@import url('https://fonts.cdnfonts.com/css/cascadia-code');",
       algorithms: [{}],
     },
-    (
-      items = {
-        algorithms: [{ title: "", algorithm: "" }],
-      }
-    ) => {
+    (items) => {
       document.getElementById("icons-enabled").checked = items.icons;
       document.getElementById("font-ligatures-enabled").checked =
         items.fontLigatures;
